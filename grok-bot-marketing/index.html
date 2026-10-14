@@ -19,7 +19,7 @@ figure{margin:0}svg{display:block;width:100%;max-width:440px;margin:0 auto;heigh
 .cap,figcaption{text-align:center;font-size:15px;margin-top:8px}
 .big{font-size:18px}.t{font-size:13px;color:var(--sub);font-weight:400}section{margin-bottom:28px}.grid{margin-top:14px}a{color:var(--accent)}
 </style></head><body>
-<div class="bar"><button id="langBtn" onclick="toggleLang()" aria-label="Switch language">EN</button><button onclick="setTheme('light')">Light</button><button onclick="setTheme('dark')">Dark</button></div>
+<div class="bar"><button data-setlang="ja" onclick="setLang('ja',true)">JA</button><button data-setlang="en" onclick="setLang('en',true)">EN</button><button data-setlang="both" onclick="setLang('both',true)">Both</button><button onclick="setTheme('light')">Light</button><button onclick="setTheme('dark')">Dark</button></div>
 <main><h1><span lang="ja">マーケ用 Grok Bot：ボットのチームでアイデアから実行まで</span><span lang="en">Grok Bot for Marketing: idea to launch with bots</span></h1><p class="big"><span lang="ja">約1時間のウェビナー。担当ごとにボットを作り、同僚のように頼んで、イベントを作るまでの全部を見せる。</span><span lang="en">A ~1 hour webinar: one bot per job, messaged like teammates, running a whole event.</span></p>
 <section><h2>1. <span lang="ja">ジェンナの話</span><span lang="en">Who Jenna is</span> <small class="t">00:00〜</small></h2><p class="cap"><span lang="ja">頼みごとが多すぎて、ボットに助けてもらった。</span><span lang="en">Too many requests, so bots stepped in.</span></p><figure><svg viewBox="0 0 480 430" role="img">
 <rect x="80" y="30" width="320" height="60" rx="14" fill="var(--box)" stroke="var(--accent)" stroke-width="2"/>
@@ -212,13 +212,11 @@ figure{margin:0}svg{display:block;width:100%;max-width:440px;margin:0 auto;heigh
 function layout(m){document.querySelectorAll('svg text').forEach(t=>{const e=t.querySelector('tspan[lang="en"]');if(!e)return;e.setAttribute('x',t.getAttribute('x'));e.setAttribute('dy',m==='both'?'1.15em':'0');t.setAttribute('y',+t.dataset.y0+(m==='both'?-6:0))});}
 document.querySelectorAll('svg text').forEach(t=>t.dataset.y0=t.getAttribute('y'));
 var KEY='eli5-lang';
-window.setLang=function(m,save){var d=document.documentElement;d.dataset.lang=m;if(m!=='both')d.lang=m;layout(m);
- var btn=document.getElementById('langBtn');if(btn)btn.textContent=m==='en'?'JA':'EN';
+window.setLang=function(m,save){var d=document.documentElement;d.dataset.lang=m;d.lang=m==='en'?'en':'ja';layout(m);
  if(save)try{localStorage.setItem(KEY,m)}catch(e){}};
-window.toggleLang=function(){setLang(document.documentElement.dataset.lang==='ja'?'en':'ja',true)};
 window.setTheme=function(t){document.documentElement.dataset.theme=t;try{localStorage.setItem('eli5-theme',t)}catch(e){}};
-(function(){var q=new URLSearchParams(location.search).get('lang'),s=null;try{s=localStorage.getItem(KEY)}catch(e){}
- var l=(q==='ja'||q==='en')?q:(s==='ja'||s==='en')?s:((navigator.language||'').toLowerCase().indexOf('ja')===0?'ja':'en');setLang(l)})();
+(function(){var ok=function(v){return v==='ja'||v==='en'||v==='both'};var q=new URLSearchParams(location.search).get('lang'),s=null;try{s=localStorage.getItem('eli5-lang')}catch(e){}
+ setLang(ok(q)?q:ok(s)?s:(/^ja/i.test(navigator.language||'')?'ja':'en'))})();
 var th=null;try{th=localStorage.getItem('eli5-theme')}catch(e){}
 setTheme(th||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'));
 </script></body></html>
