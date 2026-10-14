@@ -1,5 +1,5 @@
 # Grok Bot for Marketing: Go from idea to launch with a team of Bots — outline
-Source: grok-bot-marketing.en-orig.vtt (auto captions, 00:00–57:36). Speakers: Jenna (field growth team, SpaceX AI) and host Alex. Demo uses made-up data.
+Source: the video's English auto captions (00:00–57:36). Speakers: Jenna (field growth team, SpaceX AI) and host Alex. Demo uses made-up data.
 
 ## 1. 00:00–01:50 Who Jenna is, and why Grok Bot
 - Agenda: background → intro to Grok Bot → meet the bot team → demo → learnings → Q&A.

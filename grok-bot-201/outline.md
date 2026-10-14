@@ -1,4 +1,4 @@
-# Grok Bot 201 — outline (video grok-bot-201, 55:27)
+# Grok Bot 201 — outline (55:27)
 
 Speakers: Scott (AI deployment team, host) and Joseph (field engineering, demo).
 
